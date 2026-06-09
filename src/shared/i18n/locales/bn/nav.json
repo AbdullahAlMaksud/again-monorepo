@@ -1,0 +1,21 @@
+{
+  "aria": "টাইমার রুট",
+  "home": "হোম",
+  "routes": {
+    "pomodoro": "পোমোডোরো",
+    "stopwatch": "স্টপওয়াচ",
+    "countdown": "কাউন্টডাউন",
+    "clock": "ঘড়ি"
+  },
+  "themes": {
+    "emerald": "এমারল্ড",
+    "dark": "ডার্ক",
+    "light": "লাইট",
+    "nature_green_light": "প্রকৃতি",
+    "natural_green": "বন"
+  },
+  "languages": {
+    "en": "ইংরেজি",
+    "bn": "বাংলা"
+  }
+}
