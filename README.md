@@ -1,6 +1,6 @@
 # Ghorial — Minimalist Focus Timer & Productivity Suite
 
-**Short Description:** A clean, distraction-free focus timer, digital clock, and productivity companion built with Next.js 16, React 19, Tailwind CSS v4, and native Bengali & English typography.
+A clean, distraction-free focus timer, digital clock, and productivity companion built with Next.js 16, React 19, Tailwind CSS v4, and native Bengali & English typography.
 
 <p align="left">
   <img src="https://img.shields.io/badge/pnpm-11.18.0-F69220?style=for-the-badge&logo=pnpm&logoColor=white" alt="pnpm" />
@@ -145,15 +145,19 @@ cd ghorial-web
 pnpm install
 ```
 
-**3. Start the development server**
+**3. Configure environment variables (If Needed)**
+
+Create a `.env.local` file in the project root and configure the required variables using `.env.example` as your reference, if your local setup requires it.
+
+See [Environment Variables](#environment-variables) for details.
+
+**4. Start the development server**
 
 ```bash
 pnpm dev
 ```
 
-**4. Open the application**
-
-Navigate to [http://localhost:3000](http://localhost:3000) in your web browser.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ### Environment Variables
 
@@ -165,7 +169,6 @@ Ghorial uses environment variables to configure application services and externa
 4. Keep credentials and access tokens private.
 
 Never commit your real `.env.local` file or expose private credentials in client-side code.
-```
 
 ### Available Scripts
 
@@ -212,23 +215,18 @@ ghorial-web/
 
 ### Deployment
 
-#### Deploy with Vercel
+Ghorial can be deployed to [Vercel](https://vercel.com/) or another hosting platform that supports Next.js.
 
-Ghorial can be deployed using the [Vercel Platform](https://vercel.com/).
+Before deploying, configure the environment variables required by your chosen storage integrations and ensure that the database and GitHub API settings are correct.
 
-1. Push your latest code to GitHub, GitLab, or Bitbucket.
-2. Import the repository into your Vercel Dashboard.
-3. Configure the deployment settings if required:
+To build and run the production application:
 
-   | Setting | Value |
-   | --- | --- |
-   | Build Command | `pnpm run build` |
-   | Output Directory | `.next` |
-   | Install Command | `pnpm install` |
+```bash
+pnpm build
+pnpm start
+```
 
-4. Click **Deploy**.
-
-Vercel can detect the Next.js application and pnpm configuration automatically.
+For platform-specific instructions, consult the [Next.js deployment documentation](https://nextjs.org/docs/app/getting-started/deploying).
 
 ## Contributing
 
