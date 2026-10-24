@@ -11,257 +11,253 @@
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" />
 </p>
 
+<p align="center">
+  <img width="49%" alt="Photocard Studio screenshot 2" src="https://github.com/user-attachments/assets/f90a442e-3204-493e-9403-67488de48ff8" />
+  <img width="49%" alt="Photocard Studio screenshot 1" src="https://github.com/user-attachments/assets/42db3298-abcb-45f8-b8b8-26e4e3d1a9ee" />
+</p>
+<!-- <img width="1919" height="1079" alt="image" src="" /><img width="1919" height="1079" alt="image" src="" /> -->
+
+
 ---
 
 ## Table of Contents
 
 - [About](#about)
 - [Features](#features)
-  - [Pomodoro Timer](#1-pomodoro-timer)
-  - [Lap Stopwatch](#2-lap-stopwatch)
-  - [Countdown Timer](#3-countdown-timer)
-  - [Digital Clock](#4-digital-clock)
-  - [Themes](#themes)
-  - [Bilingual Typography & i18n](#bilingual-typography--i18n)
-  - [Audio & Desktop Notifications](#audio--desktop-notifications)
-  - [Keyboard Shortcuts](#keyboard-shortcuts)
 - [Tech Stack](#tech-stack)
 - [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Environment Variables](#environment-variables)
-  - [Available Scripts](#available-scripts)
-- [Project Structure](#project-structure)
-- [Deployment](#deployment)
 - [Contributing](#contributing)
 - [License](#license)
 - [Contact](#contact)
 
----
-
 ## About
 
-**Ghorial** (ঘড়িয়াল) is an open-source, beautifully crafted productivity web application created to help you maintain momentum, track focus periods, and stay mindful of time without clutter or distractions.
+**Ghorial (ঘড়িয়াল)** is an open-source productivity web application designed to help you maintain focus, track your time, and build better work habits without unnecessary distractions.
 
-Inspired by classical minimalism and modern Swiss design principles, Ghorial combines a Pomodoro technique timer, precision lap stopwatch, flexible countdown timer, and aesthetic full-screen clock into a cohesive, fluid web interface. It delivers zero-latency client-side interaction, Web Audio API sound synthesis, and first-class bilingual support for English and Bengali speakers.
-
----
+Inspired by classical minimalism and modern Swiss design principles, Ghorial combines a Pomodoro timer, precision lap stopwatch, flexible countdown timer, and minimalist digital clock in one cohesive interface. It provides responsive client-side interactions, synthesized audio feedback, and bilingual support for English and Bengali speakers.
 
 ## Features
 
 ### 1. Pomodoro Timer
-- **Auto-Cycle Progression:** Automatically alternates between focus sessions (default 25 min) and short breaks (5 min). After completing 4 focus cycles, transitions into an extended long break (30 min).
-- **Customizable Intervals:** Tap-to-edit duration adjustments for Focus, Short Break, and Long Break phases.
-- **Visual Session Dots:** Visual progress tracker showing completed sessions in the current 4-session block.
-- **Circular Progress Meter:** Smooth SVG ring visualizing time remaining with phase-specific color coding.
-- **Quick Controls:** Start, Pause, Reset to default durations, and Zero out state with one click.
+
+- **Automatic Cycle Progression:** Automatically alternate between focus sessions (25 minutes by default) and short breaks (5 minutes). After four focus sessions, transition into a 30-minute long break.
+- **Customizable Intervals:** Adjust focus, short-break, and long-break durations.
+- **Visual Session Dots:** Track completed focus sessions within each four-session cycle.
+- **Circular Progress Meter:** Visualize the remaining time through a smooth SVG progress ring.
+- **Quick Controls:** Start, pause, and reset the timer.
 
 ### 2. Lap Stopwatch
-- **High-Precision Tracking:** Real-time timing showing minutes, seconds, and hundredths of a second (centiseconds).
-- **Lap Recording:** Split time recording with relative lap deltas to track lap-by-lap variances.
-- **Fastest & Slowest Lap Highlighting:** Color-coded badges instantly pinpoint personal best and slowest laps.
-- **Scrollable Lap Log:** Clean review of all recorded intervals.
+
+- **Precision Time Tracking:** Display minutes, seconds, and hundredths of a second.
+- **Lap Recording:** Record split times and compare individual laps.
+- **Fastest and Slowest Lap Highlighting:** Identify personal best and slowest laps using color-coded indicators.
+- **Scrollable Lap Log:** Review recorded lap times.
 
 ### 3. Countdown Timer
-- **Configurable Durations:** Set hours, minutes, and seconds using quick preset buttons or custom inputs.
-- **Preset Quick-Picks:** Instant buttons for common durations (e.g., 5 min, 10 min, 15 min, 25 min, 45 min, 60 min).
-- **Audio Alarm Trigger:** Synthesized bell chime sounds when the countdown completes.
+
+- **Configurable Durations:** Set hours, minutes, and seconds.
+- **Quick Presets:** Choose common durations, including 5, 10, 15, 25, 45, and 60 minutes.
+- **Audio Alarm:** Play a synthesized bell chime when the countdown finishes.
 
 ### 4. Digital Clock
-- **Minimalist Full-Screen Display:** Uncluttered digital clock designed for desk setups, second monitors, and ambient study environments.
-- **12-Hour & 24-Hour Modes:** Toggle easily between standard AM/PM and military time.
-- **Localized Date & Numerals:** Displays the date in English or Bengali script depending on the chosen language.
-- **Pulsing Colon Separator:** Subtle, hypnotic breathing animation on seconds ticks.
 
----
+- **Minimalist Full-Screen Display:** Display the time without unnecessary distractions.
+- **12-Hour and 24-Hour Modes:** Switch between AM/PM and 24-hour formats.
+- **Localized Date and Numerals:** Display dates and numerals in English or Bengali.
+- **Animated Colon Separator:** Add a subtle animation to the clock's time separator.
 
 ### Themes
 
-Ghorial features 5 carefully calibrated color palettes designed to minimize eye fatigue during extended work sessions:
+Ghorial features five color themes designed for different environments and preferences.
 
-| Theme | Identifier | Description |
-|---|---|---|
-| **Emerald** | `emerald` | Deep dark obsidian backdrop with radiant mint and emerald accents (Default) |
-| **Dark** | `dark` | Monochromatic slate and neutral gray tones for ultimate nighttime focus |
-| **Light** | `light` | Crisp, high-contrast white and stone layout for well-lit daylight spaces |
-| **Nature Green Light** | `nature-green-light` | Gentle matcha and botanical pastel tones on a soft paper background |
-| **Natural Green** | `natural-green` | Rich forest green and earthy organic undertones |
+| Theme | Description |
+| --- | --- |
+| **Emerald** | A deep, dark background with radiant mint and emerald accents. Default theme. |
+| **Dark** | Monochromatic slate and neutral gray tones for nighttime focus. |
+| **Light** | A crisp, high-contrast white and stone palette for bright environments. |
+| **Nature Green Light** | Soft matcha and botanical pastel tones on a paper-like background. |
+| **Natural Green** | Rich forest green and earthy, organic colors. |
 
-> **Pro Tip:** Press <kbd>D</kbd> anywhere in the application to instantly cycle through all themes.
+**Theme Shortcut:** Press `D` anywhere in the application to cycle through the available themes.
 
----
+### Bilingual Typography & Internationalization
 
-### Bilingual Typography & i18n
-- **Native Dual Language Support:** Instant language switching between English and Bengali (বাংলা).
-- **Curated Typography:** 
-  - English: **DM Sans** for legible UI elements & **DM Mono** for tabular numbers.
-  - Bengali: **Anek Bangla** for authentic, culturally balanced typography.
-- **Numeral Localisation:** Complete conversion between Arabic numerals (`0-9`) and Bengali digits (`০-৯`).
+- **English and Bengali Support:** Switch between English and Bengali (বাংলা).
+- **Curated Typography:** DM Sans for English interface text, DM Mono for tabular numbers, and Anek Bangla for Bengali typography.
+- **Localized Numerals:** Convert between Arabic numerals (`0–9`) and Bengali digits (`০–৯`).
 
 ### Audio & Desktop Notifications
-- **Synthesized Audio:** Built with the browser's native **Web Audio API** (`AudioContext`) — no external MP3/WAV assets required, ensuring zero network latency and crisp playback.
-- **Subtle Ticking:** Optional rhythmic audio feedback on minute transitions.
-- **Browser Notifications:** Native HTML5 notifications inform you when focus or break sessions end, even when working in another tab or window.
+
+- **Synthesized Audio:** Generate sounds using the browser's native Web Audio API (`AudioContext`), without external audio files.
+- **Optional Ticking Sounds:** Enable rhythmic audio feedback during minute transitions.
+- **Browser Notifications:** Receive notifications when focus sessions or breaks end, even when working in another tab or window.
 
 ### Keyboard Shortcuts
 
-| Key | Action |
-|---|---|
-| <kbd>D</kbd> | Cycle through available themes |
-| <kbd>F</kbd> | Toggle full-screen mode |
-| <kbd>Space</kbd> | Start / Pause active timer |
-
----
+| Shortcut | Action |
+| --- | --- |
+| `D` | Cycle through available themes. |
+| `F` | Toggle full-screen mode. |
+| `Space` | Start or pause the active timer. |
 
 ## Tech Stack
 
-| Category | Technology | Description |
-|---|---|---|
-| **Package Manager** | [pnpm](https://pnpm.io) (v11) | Fast, disk space efficient package management |
-| **Framework** | [Next.js 16](https://nextjs.org) | App Router, Server Components & Turbopack bundler |
-| **Language** | [TypeScript 5](https://www.typescriptlang.org) | End-to-end static type safety |
-| **Core Library** | [React 19](https://react.dev) | Concurrent features, modern hooks & performance |
-| **Styling** | [Tailwind CSS v4](https://tailwindcss.com) | Modern CSS-first utility architecture |
-| **UI Primitives** | [Radix UI](https://www.radix-ui.com) | Accessible, unstyled component primitives |
-| **Animation** | [Framer Motion](https://www.framer.com/motion) | Fluid layout transitions and micro-interactions |
-| **Smooth Scroll** | [Lenis](https://lenis.darkroom.engineering) | Lightweight smooth scrolling engine |
-| **Internationalisation** | [i18next](https://www.i18next.com) / [react-i18next](https://react.i18next.com) | Robust client-side translation framework |
-| **Typography** | [Fontsource](https://fontsource.org) | Self-hosted DM Sans, DM Mono, and Anek Bangla fonts |
-| **Icons** | [Lucide React](https://lucide.dev) | Consistent, lightweight vector icon library |
+- **Package Manager:** [pnpm](https://pnpm.io/) — Fast, disk-space-efficient package management.
+- **Framework:** [Next.js 16](https://nextjs.org/) — App Router, Server Components, and Turbopack.
+- **Language:** [TypeScript](https://www.typescriptlang.org/) — Static type checking and type safety.
+- **Core Library:** [React 19](https://react.dev/) — Modern UI rendering and React APIs.
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/) — CSS-first utility-based styling.
+- **UI Primitives:** [Radix UI](https://www.radix-ui.com/) — Accessible, unstyled component primitives.
+- **Animation:** [Framer Motion](https://www.framer.com/motion/) — Layout transitions and micro-interactions.
+- **Smooth Scrolling:** [Lenis](https://lenis.darkroom.engineering/) — Lightweight smooth-scrolling engine.
+- **Internationalization:** [i18next](https://www.i18next.com/) and [react-i18next](https://react.i18next.com/) — Client-side translation and language management.
+- **Typography:** [Fontsource](https://fontsource.org/) — Self-hosted DM Sans, DM Mono, and Anek Bangla fonts.
+- **Icons:** [Lucide React](https://lucide.dev/) — Lightweight, consistent vector icons.
 
----
 
 ## Getting Started
 
 ### Prerequisites
 
-Ensure you have the following installed on your machine:
-- **Node.js**: `v20.x` or higher
-- **pnpm**: `v10.x` or `v11.x` (`npm install -g pnpm`)
+Ensure you have the following installed:
+
+- [Node.js](https://nodejs.org/) v20.x or later
+- [pnpm](https://pnpm.io/installation) v10.x or v11.x
+
+Install pnpm globally if needed:
+
+```bash
+npm install -g pnpm
+```
 
 ### Installation
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/AbdullahAlMaksud/ghorial-web.git
-   cd ghorial-web
-   ```
+**1. Clone the repository**
 
-2. **Install project dependencies:**
-   ```bash
-   pnpm install
-   ```
+```bash
+git clone https://github.com/AbdullahAlMaksud/ghorial-web.git
+cd ghorial-web
+```
 
-3. **Start the local development server:**
-   ```bash
-   pnpm dev
-   ```
+**2. Install dependencies**
 
-4. **Open the application:**
-   Navigate to [http://localhost:3000](http://localhost:3000) in your web browser.
+```bash
+pnpm install
+```
 
----
+**3. Start the development server**
+
+```bash
+pnpm dev
+```
+
+**4. Open the application**
+
+Navigate to [http://localhost:3000](http://localhost:3000) in your web browser.
 
 ### Environment Variables
 
-Ghorial operates entirely client-side for its core timer features and does not require third-party API credentials to run locally. If you wish to extend the application with analytics or external storage, create a `.env.local` file in the root directory:
+Ghorial uses environment variables to configure application services and external integrations.
 
-```env
-# Optional environment variables
-NEXT_PUBLIC_APP_URL=http://localhost:3000
+1. Create a `.env.local` file in the project root.
+2. Review `.env.example` for available variables and their intended use.
+3. Configure the required settings for MongoDB Atlas and GitHub API integration, as applicable.
+4. Keep credentials and access tokens private.
+
+Never commit your real `.env.local` file or expose private credentials in client-side code.
 ```
-
----
 
 ### Available Scripts
 
 | Command | Description |
-|---|---|
-| `pnpm dev` | Starts the Next.js development server with Turbopack |
-| `pnpm build` | Compiles an optimized production build |
-| `pnpm start` | Runs the compiled production build locally |
-| `pnpm lint` | Runs ESLint to check for code quality and style issues |
+| --- | --- |
+| `pnpm dev` | Start the Next.js development server with Turbopack. |
+| `pnpm build` | Compile an optimized production build. |
+| `pnpm start` | Run the compiled production build locally. |
+| `pnpm lint` | Run ESLint to check code quality and style. |
 
----
+### Project Structure
 
-## Project Structure
-
-```
+```text
 ghorial-web/
-├── public/                 # Static assets and icons
+├── public/                     # Static assets and icons
 ├── src/
-│   ├── app/                # Next.js App Router
-│   │   ├── clock/          # Clock route (/clock)
-│   │   ├── countdown/      # Countdown route (/countdown)
-│   │   ├── pomodoro/       # Pomodoro timer route (/pomodoro)
-│   │   ├── stopwatch/      # Stopwatch route (/stopwatch)
-│   │   ├── globals.css     # Global styles & theme color tokens
-│   │   ├── layout.tsx      # Root application layout with Fontsource imports
-│   │   └── page.tsx        # Entry page (renders clock feature by default)
-│   ├── features/           # Feature-sliced modules
-│   │   ├── clock/          # Clock components, formatters & hooks
-│   │   ├── countdown/      # Countdown state machine & presets
-│   │   ├── pomodoro/       # Pomodoro phases, cycle dots & editors
-│   │   └── stopwatch/      # Millisecond stopwatch & lap recorder
-│   └── shared/             # Cross-cutting concerns & shared utilities
-│       ├── components/     # UI primitives & application shell components
-│       ├── hooks/          # Shared hooks (e.g., useTimerSound)
-│       ├── i18n/           # i18next configuration & EN/BN translation files
-│       ├── lib/            # Utility helpers (cn, formatters)
-│       ├── navigation/     # Nav links and sidebar configurations
-│       ├── providers/      # Compound providers (Theme, i18n, Audio)
-│       └── theme/          # Theme registry, cycling logic & CSS mapping
-├── package.json            # Project manifest & dependencies
-├── pnpm-lock.yaml          # Pnpm dependency lockfile
-├── pnpm-workspace.yaml     # Allowed build scripts configuration
-├── tsconfig.json           # TypeScript configuration
-└── README.md               # Project documentation
+│   ├── app/                    # Next.js App Router
+│   │   ├── clock/              # Digital clock route
+│   │   ├── countdown/          # Countdown timer route
+│   │   ├── pomodoro/           # Pomodoro timer route
+│   │   ├── stopwatch/          # Stopwatch route
+│   │   ├── globals.css         # Global styles and theme tokens
+│   │   ├── layout.tsx          # Root layout and font imports
+│   │   └── page.tsx            # Entry page
+│   ├── features/               # Feature-specific modules
+│   │   ├── clock/              # Clock components, formatters, and hooks
+│   │   ├── countdown/          # Countdown state and presets
+│   │   ├── pomodoro/           # Pomodoro phases, cycle dots, and editors
+│   │   └── stopwatch/          # Stopwatch and lap recording
+│   └── shared/                 # Shared utilities and application modules
+│       ├── components/         # UI primitives and application shell
+│       ├── hooks/              # Shared hooks, including timer sounds
+│       ├── i18n/               # i18next configuration and translations
+│       ├── lib/                # Utility helpers and formatters
+│       ├── navigation/         # Navigation links and sidebar configuration
+│       ├── providers/           # Theme, i18n, and audio providers
+│       └── theme/               # Theme registry and cycling logic
+├── package.json                # Project manifest and dependencies
+├── pnpm-lock.yaml              # pnpm dependency lockfile
+├── pnpm-workspace.yaml         # pnpm workspace configuration
+├── tsconfig.json               # TypeScript configuration
+└── README.md                   # Project documentation
 ```
 
----
+### Deployment
 
-## Deployment
+#### Deploy with Vercel
 
-### Deploy with Vercel (Recommended)
-
-The easiest way to deploy Ghorial is using the [Vercel Platform](https://vercel.com):
+Ghorial can be deployed using the [Vercel Platform](https://vercel.com/).
 
 1. Push your latest code to GitHub, GitLab, or Bitbucket.
 2. Import the repository into your Vercel Dashboard.
-3. Vercel automatically detects Next.js and pnpm:
-   - **Build Command:** `pnpm run build`
-   - **Output Directory:** `.next`
-   - **Install Command:** `pnpm install`
+3. Configure the deployment settings if required:
+
+   | Setting | Value |
+   | --- | --- |
+   | Build Command | `pnpm run build` |
+   | Output Directory | `.next` |
+   | Install Command | `pnpm install` |
+
 4. Click **Deploy**.
 
----
+Vercel can detect the Next.js application and pnpm configuration automatically.
 
 ## Contributing
 
-Contributions make the open-source community an incredible place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions are welcome and greatly appreciated. Whether you're fixing a bug, improving an existing feature, or proposing a new idea, your contributions help make Ghorial better.
 
-1. **Fork the Project**
-2. **Create your Feature Branch:**
+1. Fork the project.
+2. Create a feature branch:
+
    ```bash
    git checkout -b feature/AmazingFeature
    ```
-3. **Commit your Changes:**
+
+3. Commit your changes:
+
    ```bash
    git commit -m "feat: add some AmazingFeature"
    ```
-4. **Push to the Branch:**
+
+4. Push the branch:
+
    ```bash
    git push origin feature/AmazingFeature
    ```
-5. **Open a Pull Request**
 
----
+5. Open a pull request.
 
 ## License
 
-Distributed under the **MIT License**. See `LICENSE` for more information.
-
----
+Distributed under the **MIT License**. See [`LICENSE`](./LICENSE) for more information.
 
 ## Contact
 
