@@ -1,4 +1,4 @@
-# Ghorial (ঘড়িয়াল) — Minimalist Focus Timer & Productivity Suite
+# Ghorial — Minimalist Focus Timer & Productivity Suite
 
 **Short Description:** A clean, distraction-free focus timer, digital clock, and productivity companion built with Next.js 16, React 19, Tailwind CSS v4, and native Bengali & English typography.
 
