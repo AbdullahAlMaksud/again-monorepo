@@ -20,8 +20,8 @@
 ## Getting Started
 
 ```bash
-bun install
-bun dev
+pnpm install
+pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
@@ -74,4 +74,4 @@ src/
 - [Framer Motion](https://www.framer.com/motion) — Animations
 - [Lucide React](https://lucide.dev) — Icons
 - [i18next](https://www.i18next.com) / [react-i18next](https://react.i18next.com) — Internationalisation
-- [Bun](https://bun.sh) — Package manager & runtime
+- [pnpm](https://pnpm.io) — Package manager
