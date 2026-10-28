@@ -1,273 +1,277 @@
-# Ghorial — Minimalist Focus Timer & Productivity Suite
+# 🔁 Again Monorepo
 
-A clean, distraction-free focus timer, digital clock, and productivity companion built with Next.js 16, React 19, Tailwind CSS v4, and native Bengali & English typography.
+Welcome to the **Again Monorepo**—a unified codebase containing the entire ecosystem for **Again**, a minimal, private, and local-first recurring task tracker and maintenance upkeep platform.
+
+Unlike streak-driven habit trackers, **Again** is built for real-world upkeep: changing HVAC filters, descaling coffee machines, vehicle oil changes, watering plants, and backing up devices. It calculates the next due date forward from when a task is actually completed, keeping your routines realistic, stress-free, and private.
 
 <p align="left">
   <img src="https://img.shields.io/badge/pnpm-11.18.0-F69220?style=for-the-badge&logo=pnpm&logoColor=white" alt="pnpm" />
-  <img src="https://img.shields.io/badge/Next.js-16.2.7-black?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js" />
-  <img src="https://img.shields.io/badge/React-19.2.4-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
-  <img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js" />
+  <img src="https://img.shields.io/badge/React-19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
+  <img src="https://img.shields.io/badge/TypeScript-Strict-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
   <img src="https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/shadcn%2Fui-components-111827?style=for-the-badge" alt="shadcn/ui" />
+  <img src="https://img.shields.io/badge/Vitest-Passing-6E9F18?style=for-the-badge&logo=vitest&logoColor=white" alt="Vitest" />
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" />
 </p>
 
-<p align="center">
-  <img width="49%" alt="Photocard Studio screenshot 2" src="https://github.com/user-attachments/assets/f90a442e-3204-493e-9403-67488de48ff8" />
-  <img width="49%" alt="Photocard Studio screenshot 1" src="https://github.com/user-attachments/assets/42db3298-abcb-45f8-b8b8-26e4e3d1a9ee" />
-</p>
-<!-- <img width="1919" height="1079" alt="image" src="" /><img width="1919" height="1079" alt="image" src="" /> -->
+---
 
+## 📋 Table of Contents
+
+- [Ecosystem Architecture](#ecosystem-architecture)
+- [📦 Package Manager Policy](#-package-manager-policy)
+- [🗂️ Monorepo Workspaces Overview](#️-monorepo-workspaces-overview)
+- [🛠️ Workspaces Deep-Dive](#️-workspaces-deep-dive)
+  - [1. 🧩 landing-portal (Web App & Workspace)](#1--landing-portal-web-app--workspace)
+  - [2. 🛡️ admin-portal (Management & Telemetry)](#2-️-admin-portal-management--telemetry)
+  - [3. ⚙️ server (API & Sync Engine)](#3-️-server-api--sync-engine)
+  - [4. 📱 mobile-app (Cross-Platform Companion)](#4--mobile-app-cross-platform-companion)
+- [⚡ Quickstart & Local Setup](#-quickstart--local-setup)
+- [📜 Monorepo Scripts](#-monorepo-scripts)
+- [🔒 Privacy & Local-First Philosophy](#-privacy--local-first-philosophy)
+- [🤝 Contributing](#-contributing)
+- [📄 License & Authors](#-license--authors)
 
 ---
 
-## Table of Contents
+## 🏗️ Ecosystem Architecture
 
-- [About](#about)
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Getting Started](#getting-started)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
+```mermaid
+flowchart TD
+    subgraph Clients [Client Applications]
+        LP["🧩 landing-portal (Next.js 16 / React 19)<br/>Local-first Web Workspace & PWA"]
+        MA["📱 mobile-app (Expo / React Native)<br/>iOS & Android Offline Companion"]
+        AP["🛡️ admin-portal (Next.js 16)<br/>Operations & Reminder Queue Dashboard"]
+    end
 
-## About
+    subgraph Core [Cloud Backend & Workers]
+        S["⚙️ server (Hono / Node.js 22 LTS)<br/>Task Sync, Auth & Reminder Engine"]
+        Q["⏰ BullMQ & Redis Scheduler<br/>Recurring Due Date Evaluator"]
+        W["📬 Notification Dispatcher<br/>Web Push (VAPID) / APNs / FCM"]
+    end
 
-**Ghorial (ঘড়িয়াল)** is an open-source productivity web application designed to help you maintain focus, track your time, and build better work habits without unnecessary distractions.
+    subgraph Storage [Databases & Caches]
+        DB[("🗄️ PostgreSQL / MongoDB<br/>Encrypted Tasks & User Data")]
+        Cache[("⚡ Redis<br/>Queues & Cache")]
+    end
 
-Inspired by classical minimalism and modern Swiss design principles, Ghorial combines a Pomodoro timer, precision lap stopwatch, flexible countdown timer, and minimalist digital clock in one cohesive interface. It provides responsive client-side interactions, synthesized audio feedback, and bilingual support for English and Bengali speakers.
+    LP -.->|Optional Cloud Sync| S
+    MA -.->|Push Notifications & Sync| S
+    AP -->|RBAC & Telemetry| S
+    S --> DB
+    S --> Q
+    Q --> Cache
+    Q --> W
+    W -.->|Web Push| LP
+    W -.->|APNs / FCM| MA
+```
 
-## Features
+---
 
-### 1. Pomodoro Timer
+## 📦 Package Manager Policy
 
-- **Automatic Cycle Progression:** Automatically alternate between focus sessions (25 minutes by default) and short breaks (5 minutes). After four focus sessions, transition into a 30-minute long break.
-- **Customizable Intervals:** Adjust focus, short-break, and long-break durations.
-- **Visual Session Dots:** Track completed focus sessions within each four-session cycle.
-- **Circular Progress Meter:** Visualize the remaining time through a smooth SVG progress ring.
-- **Quick Controls:** Start, pause, and reset the timer.
+> [!IMPORTANT]
+> To ensure reproducible builds and dependency isolation:
+> - 🌐 **Core Workspaces (`landing-portal`, `admin-portal`, `server`)**: Strictly use **[pnpm](https://pnpm.io)** (`pnpm@11.x`).
+> - 📱 **Mobile App (`mobile-app`)**: Uses **[Bun](https://bun.sh)** (`bun`) for ultra-fast native bundle compilation.
 
-### 2. Lap Stopwatch
+| Workspace | Directory | Framework / Stack | Package Manager | Status |
+| :--- | :--- | :--- | :---: | :---: |
+| **Landing Portal** | [`landing-portal/`](file:///home/abdullah/MyProject/again-monorepo/landing-portal) | Next.js 16, React 19, Tailwind CSS v4, shadcn/ui, Vitest | **`pnpm`** | Active |
+| **Admin Portal** | [`admin-portal/`](file:///home/abdullah/MyProject/again-monorepo/admin-portal) | Next.js 16, React 19, Tailwind CSS v4, Radix Primitives | **`pnpm`** | Ready |
+| **Backend Server** | [`server/`](file:///home/abdullah/MyProject/again-monorepo/server) | Hono / Express, Node.js 22 LTS, Redis, BullMQ, Better-Auth | **`pnpm`** | Ready |
+| **Mobile App** | [`mobile-app/`](file:///home/abdullah/MyProject/again-monorepo/mobile-app) | Expo (React Native), TypeScript, Zustand, SQLite | **`bun`** | Planned |
 
-- **Precision Time Tracking:** Display minutes, seconds, and hundredths of a second.
-- **Lap Recording:** Record split times and compare individual laps.
-- **Fastest and Slowest Lap Highlighting:** Identify personal best and slowest laps using color-coded indicators.
-- **Scrollable Lap Log:** Review recorded lap times.
+---
 
-### 3. Countdown Timer
+## 🗂️ Monorepo Workspaces Overview
 
-- **Configurable Durations:** Set hours, minutes, and seconds.
-- **Quick Presets:** Choose common durations, including 5, 10, 15, 25, 45, and 60 minutes.
-- **Audio Alarm:** Play a synthesized bell chime when the countdown finishes.
+```text
+again-monorepo/
+├── admin-portal/        # Next.js 16 administrative operations and telemetry dashboard
+│   ├── src/             # Dashboard, queue inspector, user directory, and metrics
+│   └── README.md        # Dedicated Admin Portal documentation
+├── landing-portal/      # Next.js 16 local-first recurring task tracker and PWA
+│   ├── src/             # App router, domain features, shadcn/ui primitives, theme tokens
+│   ├── tests/           # Vitest recurring calculation engine unit tests
+│   └── README.md        # Dedicated Landing Portal documentation
+├── server/              # High-performance API, cloud sync engine, and BullMQ worker
+│   ├── src/             # Hono endpoints, sync protocol, auth handlers, and workers
+│   └── README.md        # Dedicated Backend Server documentation
+├── mobile-app/          # Cross-platform Expo / React Native mobile client
+├── pnpm-workspace.yaml  # pnpm multi-package workspace configuration
+├── package.json         # Unified monorepo scripts and workspace references
+├── .gitignore           # Global monorepo ignore rules
+└── README.md            # Root ecosystem documentation (this file)
+```
 
-### 4. Digital Clock
+---
 
-- **Minimalist Full-Screen Display:** Display the time without unnecessary distractions.
-- **12-Hour and 24-Hour Modes:** Switch between AM/PM and 24-hour formats.
-- **Localized Date and Numerals:** Display dates and numerals in English or Bengali.
-- **Animated Colon Separator:** Add a subtle animation to the clock's time separator.
+## 🛠️ Workspaces Deep-Dive
 
-### Themes
+### 1. 🧩 [landing-portal](file:///home/abdullah/MyProject/again-monorepo/landing-portal) (Web App & Workspace)
+* **Package Manager**: **`pnpm`**
+* **Port**: `http://localhost:3000`
+* **Core Highlights**:
+  * **Local-First Architecture**: Stores all tasks, history, and theme settings locally in `localStorage` (`again.tasks.v1`) with zero external dependency.
+  * **Recurring Date Engine**: Pure, deterministic date arithmetic handling days, weeks, months, years, month-end clamping (Jan 31 → Feb 28), and leap-year rules.
+  * **5 Bespoke Themes**: Light, Dark, Green Forest, Blue Ocean, and Dune powered by semantic CSS tokens.
+  * **Productivity Shortcuts**: Quick add (<kbd>N</kbd>), global search (<kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>K</kbd>), and ESC dismissal.
+  * **Offline PWA Shell**: Service worker caching and web manifest for installable app behavior.
+  * **Test Coverage**: 14+ unit tests validating edge cases with Vitest.
+* 👉 Read the [landing-portal README](file:///home/abdullah/MyProject/again-monorepo/landing-portal/README.md) for full documentation.
 
-Ghorial features five color themes designed for different environments and preferences.
+---
 
-| Theme | Description |
-| --- | --- |
-| **Emerald** | A deep, dark background with radiant mint and emerald accents. Default theme. |
-| **Dark** | Monochromatic slate and neutral gray tones for nighttime focus. |
-| **Light** | A crisp, high-contrast white and stone palette for bright environments. |
-| **Nature Green Light** | Soft matcha and botanical pastel tones on a paper-like background. |
-| **Natural Green** | Rich forest green and earthy, organic colors. |
+### 2. 🛡️ [admin-portal](file:///home/abdullah/MyProject/again-monorepo/admin-portal) (Management & Telemetry)
+* **Package Manager**: **`pnpm`**
+* **Port**: `http://localhost:3001`
+* **Core Highlights**:
+  * **Central Metrics**: Aggregate analytics for active workspaces, completion volume, and recurrence frequency curves.
+  * **Reminder Queue Inspector**: Live health monitoring of scheduled background notification jobs via Redis / BullMQ.
+  * **User & Device Directory**: Management of user quotas, device tokens (Web Push, APNs, FCM), and security sessions.
+  * **Remote Feature Toggles**: Dynamic runtime flags for gradual feature rollouts and sync rate limiting.
+* 👉 Read the [admin-portal README](file:///home/abdullah/MyProject/again-monorepo/admin-portal/README.md) for full documentation.
 
-**Theme Shortcut:** Press `D` anywhere in the application to cycle through the available themes.
+---
 
-### Bilingual Typography & Internationalization
+### 3. ⚙️ [server](file:///home/abdullah/MyProject/again-monorepo/server) (API & Sync Engine)
+* **Package Manager**: **`pnpm`**
+* **Port**: `http://localhost:8080`
+* **Core Highlights**:
+  * **Cloud Sync Protocol**: Incremental delta synchronization with monotonic versioning and last-write-wins (LWW) conflict resolution.
+  * **Automated Notification Worker**: BullMQ scheduler checking due tasks and dispatching Web Push (RFC 8291 / 8292), APNs, and FCM notifications.
+  * **Identity & RBAC**: Better-Auth integration with secure HttpOnly cookies, session management, and granular permission roles.
+  * **Production Ready**: Structured Pino logging, health probes (`/health`, `/metrics`), and Docker container support.
+* 👉 Read the [server README](file:///home/abdullah/MyProject/again-monorepo/server/README.md) for full documentation.
 
-- **English and Bengali Support:** Switch between English and Bengali (বাংলা).
-- **Curated Typography:** DM Sans for English interface text, DM Mono for tabular numbers, and Anek Bangla for Bengali typography.
-- **Localized Numerals:** Convert between Arabic numerals (`0–9`) and Bengali digits (`০–৯`).
+---
 
-### Audio & Desktop Notifications
+### 4. 📱 [mobile-app](file:///home/abdullah/MyProject/again-monorepo/mobile-app) (Cross-Platform Companion)
+* **Package Manager**: **`bun`**
+* **Core Highlights**:
+  * Native offline-first mobile app for iOS and Android built with Expo and React Native.
+  * Local SQLite storage for zero-latency mobile interactions.
+  * Home screen widgets for immediate overview of today's overdue and due tasks.
+  * Background push notifications via APNs and FCM.
 
-- **Synthesized Audio:** Generate sounds using the browser's native Web Audio API (`AudioContext`), without external audio files.
-- **Optional Ticking Sounds:** Enable rhythmic audio feedback during minute transitions.
-- **Browser Notifications:** Receive notifications when focus sessions or breaks end, even when working in another tab or window.
+---
 
-### Keyboard Shortcuts
-
-| Shortcut | Action |
-| --- | --- |
-| `D` | Cycle through available themes. |
-| `F` | Toggle full-screen mode. |
-| `Space` | Start or pause the active timer. |
-
-## Tech Stack
-
-- **Package Manager:** [pnpm](https://pnpm.io/) — Fast, disk-space-efficient package management.
-- **Framework:** [Next.js 16](https://nextjs.org/) — App Router, Server Components, and Turbopack.
-- **Language:** [TypeScript](https://www.typescriptlang.org/) — Static type checking and type safety.
-- **Core Library:** [React 19](https://react.dev/) — Modern UI rendering and React APIs.
-- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/) — CSS-first utility-based styling.
-- **UI Primitives:** [Radix UI](https://www.radix-ui.com/) — Accessible, unstyled component primitives.
-- **Animation:** [Framer Motion](https://www.framer.com/motion/) — Layout transitions and micro-interactions.
-- **Smooth Scrolling:** [Lenis](https://lenis.darkroom.engineering/) — Lightweight smooth-scrolling engine.
-- **Internationalization:** [i18next](https://www.i18next.com/) and [react-i18next](https://react.i18next.com/) — Client-side translation and language management.
-- **Typography:** [Fontsource](https://fontsource.org/) — Self-hosted DM Sans, DM Mono, and Anek Bangla fonts.
-- **Icons:** [Lucide React](https://lucide.dev/) — Lightweight, consistent vector icons.
-
-
-## Getting Started
+## ⚡ Quickstart & Local Setup
 
 ### Prerequisites
+- **Node.js**: `v20.9.0` or newer (Node 22 LTS recommended)
+- **pnpm**: `v11.x` (`npm install -g pnpm@11`)
+- **Redis**: Optional, required if running `server/` reminder queues (`docker run -p 6379:6379 redis:alpine`)
 
-Ensure you have the following installed:
+---
 
-- [Node.js](https://nodejs.org/) v20.x or later
-- [pnpm](https://pnpm.io/installation) v10.x or v11.x
-
-Install pnpm globally if needed:
-
-```bash
-npm install -g pnpm
-```
-
-### Installation
-
-**1. Clone the repository**
+### 1. Clone the Monorepo
 
 ```bash
-git clone https://github.com/AbdullahAlMaksud/ghorial-web.git
-cd ghorial-web
+git clone git@github.com:AbdullahAlMaksud/again-monorepo.git
+cd again-monorepo
 ```
 
-**2. Install dependencies**
+### 2. Install Dependencies
+
+Install dependencies for all pnpm workspaces simultaneously:
 
 ```bash
 pnpm install
 ```
 
-**3. Configure environment variables (If Needed)**
+---
 
-Create a `.env.local` file in the project root and configure the required variables using `.env.example` as your reference, if your local setup requires it.
+### 3. Running Individual Workspaces
 
-See [Environment Variables](#environment-variables) for details.
+You can run individual workspaces from root or by navigating to their folder:
 
-**4. Start the development server**
-
+#### Run the Web App (`landing-portal`):
 ```bash
-pnpm dev
-```
+# From monorepo root:
+pnpm dev:landing
 
+# Or navigate directly:
+cd landing-portal && pnpm dev
+```
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Environment Variables
-
-Ghorial uses environment variables to configure application services and external integrations.
-
-1. Create a `.env.local` file in the project root.
-2. Review `.env.example` for available variables and their intended use.
-3. Configure the required settings for MongoDB Atlas and GitHub API integration, as applicable.
-4. Keep credentials and access tokens private.
-
-Never commit your real `.env.local` file or expose private credentials in client-side code.
-
-### Available Scripts
-
-| Command | Description |
-| --- | --- |
-| `pnpm dev` | Start the Next.js development server with Turbopack. |
-| `pnpm build` | Compile an optimized production build. |
-| `pnpm start` | Run the compiled production build locally. |
-| `pnpm lint` | Run ESLint to check code quality and style. |
-
-### Project Structure
-
-```text
-ghorial-web/
-├── public/                     # Static assets and icons
-├── src/
-│   ├── app/                    # Next.js App Router
-│   │   ├── clock/              # Digital clock route
-│   │   ├── countdown/          # Countdown timer route
-│   │   ├── pomodoro/           # Pomodoro timer route
-│   │   ├── stopwatch/          # Stopwatch route
-│   │   ├── globals.css         # Global styles and theme tokens
-│   │   ├── layout.tsx          # Root layout and font imports
-│   │   └── page.tsx            # Entry page
-│   ├── features/               # Feature-specific modules
-│   │   ├── clock/              # Clock components, formatters, and hooks
-│   │   ├── countdown/          # Countdown state and presets
-│   │   ├── pomodoro/           # Pomodoro phases, cycle dots, and editors
-│   │   └── stopwatch/          # Stopwatch and lap recording
-│   └── shared/                 # Shared utilities and application modules
-│       ├── components/         # UI primitives and application shell
-│       ├── hooks/              # Shared hooks, including timer sounds
-│       ├── i18n/               # i18next configuration and translations
-│       ├── lib/                # Utility helpers and formatters
-│       ├── navigation/         # Navigation links and sidebar configuration
-│       ├── providers/           # Theme, i18n, and audio providers
-│       └── theme/               # Theme registry and cycling logic
-├── package.json                # Project manifest and dependencies
-├── pnpm-lock.yaml              # pnpm dependency lockfile
-├── pnpm-workspace.yaml         # pnpm workspace configuration
-├── tsconfig.json               # TypeScript configuration
-└── README.md                   # Project documentation
-```
-
-### Deployment
-
-Ghorial can be deployed to [Vercel](https://vercel.com/) or another hosting platform that supports Next.js.
-
-Before deploying, configure the environment variables required by your chosen storage integrations and ensure that the database and GitHub API settings are correct.
-
-To build and run the production application:
-
+#### Run the Admin Dashboard (`admin-portal`):
 ```bash
-pnpm build
-pnpm start
+# From monorepo root:
+pnpm dev:admin
+
+# Or navigate directly:
+cd admin-portal && pnpm dev
 ```
+Open [http://localhost:3001](http://localhost:3001) in your browser.
 
-For platform-specific instructions, consult the [Next.js deployment documentation](https://nextjs.org/docs/app/getting-started/deploying).
+#### Run the Backend Server (`server`):
+```bash
+# From monorepo root:
+pnpm dev:server
 
-## Contributing
-
-Contributions are welcome and greatly appreciated. Whether you're fixing a bug, improving an existing feature, or proposing a new idea, your contributions help make Ghorial better.
-
-1. Fork the project.
-2. Create a feature branch:
-
-   ```bash
-   git checkout -b feature/AmazingFeature
-   ```
-
-3. Commit your changes:
-
-   ```bash
-   git commit -m "feat: add some AmazingFeature"
-   ```
-
-4. Push the branch:
-
-   ```bash
-   git push origin feature/AmazingFeature
-   ```
-
-5. Open a pull request.
-
-## License
-
-Distributed under the **MIT License**. See [`LICENSE`](./LICENSE) for more information.
-
-## Contact
-
-**Abdullah Al Maksud**
-
-- **Email:** [maksud.workspace@gmail.com](mailto:maksud.workspace@gmail.com)
-- **Website:** [abdullahalmaksud.com](https://abdullahalmaksud.com)
-- **LinkedIn:** [@AbdullahAlMaksud](https://linkedin.com/in/AbdullahAlMaksud)
-- **GitHub:** [@AbdullahAlMaksud](https://github.com/AbdullahAlMaksud)
+# Or navigate directly:
+cd server && pnpm dev
+```
+API endpoints will be active on [http://localhost:8080](http://localhost:8080).
 
 ---
 
-<p align="center">
-  Crafted with care for focused work and intentional living.
-</p>
+## 📜 Monorepo Scripts
+
+Available commands from the monorepo root:
+
+| Command | Action |
+| :--- | :--- |
+| `pnpm dev:landing` | Starts the `landing-portal` Next.js development server on port 3000 |
+| `pnpm dev:admin` | Starts the `admin-portal` development server on port 3001 |
+| `pnpm dev:server` | Starts the `server` API with hot-reload on port 8080 |
+| `pnpm build:landing` | Compiles production bundle for `landing-portal` |
+| `pnpm build:admin` | Compiles production bundle for `admin-portal` |
+| `pnpm build:server` | Compiles production server build |
+| `pnpm test` | Runs all test suites across all workspaces (Vitest, unit tests) |
+| `pnpm lint` | Runs ESLint across all workspaces |
+| `pnpm typecheck` | Validates TypeScript across all workspaces |
+
+---
+
+## 🔒 Privacy & Local-First Philosophy
+
+Again is designed from day one to respect user privacy:
+1. **Local-First by Default**: The web workspace stores all data directly in the browser's local storage. No sign-up, email, or account creation is required to use all task management features.
+2. **Zero Creepy Analytics**: No behavioral trackers, third-party advertising pixels, or telemetry beacons exist in the user-facing web app.
+3. **Data Portability**: Users own their data. Full JSON export and import guarantees that tasks and history can be backed up or transferred at any time.
+
+---
+
+## 🤝 Contributing
+
+Contributions to the Again ecosystem are welcome!
+
+1. Fork this repository or create a feature branch:
+   ```bash
+   git checkout -b feature/amazing-feature
+   ```
+2. Make your improvements following the architectural guidelines of the respective workspace.
+3. Run the validation checks:
+   ```bash
+   pnpm typecheck
+   pnpm lint
+   pnpm test
+   ```
+4. Commit your changes with meaningful commit messages:
+   ```bash
+   git commit -m "feat(landing): add custom recurrence interval units"
+   ```
+5. Open a Pull Request detailing your problem statement, solution, and screenshots if applicable.
+
+---
+
+## 📄 License & Authors
+
+This project is licensed under the **MIT License**.
+
+Maintained by **[Abdullah Al Maksud](https://github.com/AbdullahAlMaksud)** (<maksud.workspace@gmail.com>).

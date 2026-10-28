@@ -1,3 +1,9 @@
+packages:
+  - 'landing-portal'
+  - 'admin-portal'
+  - 'server'
+  - 'mobile-app'
+
 allowBuilds:
   sharp: true
   unrs-resolver: true
